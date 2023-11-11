@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BikeCnt : MonoBehaviour
 {
+    [SerializeField] private GameObject bike;
     [SerializeField] private string m_DeviceName;
     private AudioClip m_AudioClip;
     private int m_LastAudioPos;
@@ -36,7 +37,9 @@ public class BikeCnt : MonoBehaviour
         if (waveData.Length == 0) return;
 
         m_AudioLevel = waveData.Average(Mathf.Abs);
-        m_Cube.transform.localScale = new Vector3(1, 1 + m_AmpGain * m_AudioLevel, 1);
+        
+
+        bike.transform.position += new Vector3(-( m_AmpGain * m_AudioLevel), 0 , 0);
     }
 
     private float[] GetUpdatedAudio()
